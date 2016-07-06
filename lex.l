@@ -114,18 +114,27 @@ ESPACO [ \t\f\r\n]+
 /**
  * 
  */
-int main(int argc, char const *argv[]) {
 
-	// yyin = fopen(argv[1])
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char const *argv[]) {
 	
 	int aux = yylex();
 
-	while (aux) {
-		printf("%d\n", aux);
-		aux = yylex();
-	}
+	printf("loucura");
 
-	//loucura
+	printf("%s\n", argv[0]);
+	printf("%s\n", argv[1]);
+
+	if (argv[1]) {
+		printf("entrei");
+		yyin = fopen(argv[1], "r");
+		while (aux) {
+			printf("%d\n", aux);
+			aux = yylex();
+		}
+	}
 
 	return 0;
 }
