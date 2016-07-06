@@ -36,14 +36,15 @@
 		ENQUANTO,
 		OPREL,
 		OPAD,
-		OPMUL
+		OPMUL,
+		OPNEG
 	};
 %}
 
 /* regular definitions */
-
-COMMENTSINLINE "\\/\\/.*"
-COMMENTSBLOCK "\\/\\*(.)*\\*\\/"
+ESPACO [ \t\f\r\n]+
+ASPAS ["]
+CADEIA {ASPAS}[^{ASPAS}]*{ASPAS}
 PROGRAMA "programa"
 VARIAVEIS "variaveis"
 INTEIRO "inteiro"
@@ -59,7 +60,6 @@ FALSO "falso"
 VERDADEIRO "verdadeiro"
 ID [a-z]+([a-z]|[0-9])*
 CTE [0-9]|[0-9]+(.[0-9]+)?
-CADEIA "\".*\""
 ATRIB ":="
 OPREL ">"|"<"|"="|">="|"<="|"<>"
 OPAD [+-]
@@ -72,11 +72,11 @@ ABREPAR "("
 FECHAPAR ")"
 ABRECH "{"
 FECHACH "}"
-ESPACO [ \t\f\r\n]+
+COMENTARIO_BLOCO "/*"[^"*/"]*"*/"
+COMENTARIO_LINHA "//"[^"\n"]*"\n"
 
 %%
 
-{ESPACO} {/* nenhuma ação e nenhum retorno */}
 "<"	{printf("%d", MENOR_Q); return(OPREL);}
 "<=" {printf("%d", MENOR_I); return(OPREL);}
 "="	{printf("%d", IGUAL); return(OPREL);}
@@ -95,19 +95,23 @@ ESPACO [ \t\f\r\n]+
 ")" {printf("%d", FECHAPAR); return(FECHAPAR);}
 "{" {printf("%d", ABRECH); return(ABRECH);}
 "}" {printf("%d", FECHACH); return(FECHACH);}
-"programa" {return(PROGRAMA);}
-"variaveis" {return(VARIAVEIS);}
-"inteiro" {return(INTEIRO);}
-"real" {return(REAL);}
-"logico" {return(LOGICO);}
-"caracter" {return(CARACTER);}
-"se" {return(SE);}
-"senao" {return(SENAO);}
-"enquanto" {return(ENQUANTO);}
-"leia" {return(LEIA);}
-"escreva" {return(ESCREVA);}
-"falso" {return(FALSO);}
-"verdadeiro" {return(VERDADEIRO);}
+"!" {printf("%d", OPNEG); return(OPNEG);}
+{ESPACO} {}
+{PROGRAMA} {return(PROGRAMA);}
+{VARIAVEIS} {return(VARIAVEIS);}
+{INTEIRO} {return(INTEIRO);}
+{REAL} {return(REAL);}
+{LOGICO} {return(LOGICO);}
+{CARACTER} {return(CARACTER);}
+{SE} {return(SE);}
+{SENAO} {return(SENAO);}
+{ENQUANTO} {return(ENQUANTO);}
+{LEIA} {return(LEIA);}
+{ESCREVA} {return(ESCREVA);}
+{FALSO} {return(FALSO);}
+{VERDADEIRO} {return(VERDADEIRO);}
+{ID} {return(ID);}
+{CTE} {return(CTE);}
 
 %%
 
@@ -115,23 +119,14 @@ ESPACO [ \t\f\r\n]+
  * 
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-
 int main(int argc, char const *argv[]) {
 	
-	int aux = yylex();
-
-	printf("loucura");
-
-	printf("%s\n", argv[0]);
-	printf("%s\n", argv[1]);
+	int aux = 1;
 
 	if (argv[1]) {
-		printf("entrei");
 		yyin = fopen(argv[1], "r");
 		while (aux) {
-			printf("%d\n", aux);
+			printf("\n");
 			aux = yylex();
 		}
 	}
