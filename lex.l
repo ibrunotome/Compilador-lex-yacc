@@ -1,44 +1,43 @@
 %{
-	enum {
-		MENOR_Q = 1,
-		MENOR_I,
-		IGUAL,
-		DIFERENTE,
-		MAIOR_Q,
-		MAIOR_I,
-		SE,
-		SENAO,
-		ID,
-		CTE,
-		MAIS,
-		MENOS,
-		VEZES,
-		DIVIDIR,
-		ATRIB,
-		PVIRG,
-		DPONTOS,
-		VIRG,
-		ABRECH,
-		ABREPAR,
-		FECHACH,
-		FECHAPAR,
-		ESPACO,
-		PROGRAMA,
-		VARIAVEIS,
-		INTEIRO,
-		REAL,
-		LOGICO,
-		CARACTER,
-		ESCREVA,
-		LEIA,
-		FALSO,
-		VERDADEIRO,
-		ENQUANTO,
-		OPREL,
-		OPAD,
-		OPMUL,
-		OPNEG
-	};
+	#define MENOR_Q "OPREL"
+	#define MENOR_I "OPREL"
+	#define IGUAL "OPREL"
+	#define DIFERENTE "OPREL"
+	#define MAIOR_Q "OPREL"
+	#define MAIOR_I "OPREL"
+	#define SE "SE"
+	#define SENAO "SENAO"
+	#define ID "ID"
+	#define CTE "CTE"
+	#define MAIS "OPAD"
+	#define MENOS "OPAD"
+	#define VEZES "OPMUL"
+	#define DIVIDIR "OPMUL"
+	#define ATRIB "ATRIB"
+	#define PVIRG "PVIRG"
+	#define DPONTOS "DPONTOS"
+	#define VIRG "VIRG"
+	#define ABRECH "ABRECH"
+	#define ABREPAR "ABREPAR"
+	#define FECHACH "FECHACH"
+	#define FECHAPAR "FECHAPAR"
+	#define ESPACO "ESPACO"
+	#define PROGRAMA "PROGRAMA"
+	#define VARIAVEIS "VARIAVEIS"
+	#define INTEIRO "INTEIRO"
+	#define REAL "REAL"
+	#define LOGICO "LOGICO"
+	#define CARACTER "CARACTER"
+	#define ESCREVA "ESCREVA"
+	#define LEIA "LEIA"
+	#define FALSO "FALSO"
+	#define VERDADEIRO "VERDADEIRO"
+	#define ENQUANTO "ENQUANTO"
+	#define OPREL "OPREL"
+	#define OPAD "OPAD"
+	#define OPMUL "OPMUL"
+	#define OPNEG "OPNEG"
+	#define CADEIA "CADEIA"
 %}
 
 /* regular definitions */
@@ -77,41 +76,44 @@ COMENTARIO_LINHA "//"[^"\n"]*"\n"
 
 %%
 
-"<"	{printf("%d", MENOR_Q); return(OPREL);}
-"<=" {printf("%d", MENOR_I); return(OPREL);}
-"="	{printf("%d", IGUAL); return(OPREL);}
-"<>" {printf("%d", DIFERENTE); return(OPREL);}
-">"	{printf("%d", MAIOR_Q); return(OPREL);}
-">=" {printf("%d", MAIOR_I); return(OPREL);}
-"+"	{printf("%d", MAIS); return(OPAD);}
-"-"	{printf("%d", MENOS); return(OPAD);}
-"*"	{printf("%d", VEZES); return(OPMUL);}
-"/"	{printf("%d", DIVIDIR); return(OPMUL);}
-":=" {printf("%d", ATRIB); return(ATRIB);}
-":" {printf("%d", DPONTOS); return(DPONTOS);}
-";" {printf("%d", PVIRG); return(PVIRG);}
-"," {printf("%d", VIRG); return(VIRG);}
-"(" {printf("%d", ABREPAR); return(ABREPAR);}
-")" {printf("%d", FECHAPAR); return(FECHAPAR);}
-"{" {printf("%d", ABRECH); return(ABRECH);}
-"}" {printf("%d", FECHACH); return(FECHACH);}
-"!" {printf("%d", OPNEG); return(OPNEG);}
 {ESPACO} {}
-{PROGRAMA} {return(PROGRAMA);}
-{VARIAVEIS} {return(VARIAVEIS);}
-{INTEIRO} {return(INTEIRO);}
-{REAL} {return(REAL);}
-{LOGICO} {return(LOGICO);}
-{CARACTER} {return(CARACTER);}
-{SE} {return(SE);}
-{SENAO} {return(SENAO);}
-{ENQUANTO} {return(ENQUANTO);}
-{LEIA} {return(LEIA);}
-{ESCREVA} {return(ESCREVA);}
-{FALSO} {return(FALSO);}
-{VERDADEIRO} {return(VERDADEIRO);}
-{ID} {return(ID);}
-{CTE} {return(CTE);}
+{CADEIA} {}
+{COMENTARIO_LINHA} {}
+{COMENTARIO_BLOCO} {}
+"<"	{printf("%s\n", MENOR_Q);}
+"<=" {printf("%s\n", MENOR_I);}
+"="	{printf("%s\n", IGUAL);}
+"<>" {printf("%s\n", DIFERENTE);}
+">"	{printf("%s\n", MAIOR_Q);}
+">=" {printf("%s\n", MAIOR_I);}
+"+"	{printf("%s\n", MAIS);}
+"-"	{printf("%s\n", MENOS);}
+"*"	{printf("%s\n", VEZES);}
+"/"	{printf("%s\n", DIVIDIR);}
+":=" {printf("%s\n", ATRIB);}
+":" {printf("%s\n", DPONTOS);}
+";" {printf("%s\n", PVIRG);}
+"," {printf("%s\n", VIRG);}
+"(" {printf("%s\n", ABREPAR);}
+")" {printf("%s\n", FECHAPAR);}
+"{" {printf("%s\n", ABRECH);}
+"}" {printf("%s\n", FECHACH);}
+"!" {printf("%s\n", OPNEG);}
+{PROGRAMA} {printf("%s\n", PROGRAMA);}
+{VARIAVEIS} {printf("%s\n", VARIAVEIS);}
+{INTEIRO} {printf("%s\n", INTEIRO);}
+{REAL} {printf("%s\n", REAL);}
+{LOGICO} {printf("%s\n", LOGICO);}
+{CARACTER} {printf("%s\n", CARACTER);}
+{SE} {printf("%s\n", SE);}
+{SENAO} {printf("%s\n", SENAO);}
+{ENQUANTO} {printf("%s\n", ENQUANTO);}
+{LEIA} {printf("%s\n", LEIA);}
+{ESCREVA} {printf("%s\n", ESCREVA);}
+{FALSO} {printf("%s\n", FALSO);}
+{VERDADEIRO} {printf("%s\n", VERDADEIRO);}
+{ID} {printf("%s\n", ID);}
+{CTE} {printf("%s\n", CTE);}
 
 %%
 
@@ -123,12 +125,9 @@ int main(int argc, char const *argv[]) {
 	
 	int aux = 1;
 
-	if (argv[1]) {
-		yyin = fopen(argv[1], "r");
-		while (aux) {
-			printf("\n");
-			aux = yylex();
-		}
+	yyin = fopen(argv[1], "r");
+	while (aux) {
+		aux = yylex();
 	}
 
 	return 0;

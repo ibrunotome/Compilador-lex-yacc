@@ -1,4 +1,3 @@
-// PROGRAMA SEM ERROS
 PROGRAMA exemplo1;
 VARIAVEIS x,y: INTEIRO;
           c:   CARACTER;
