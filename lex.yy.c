@@ -371,20 +371,20 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_accept[123] =
     {   0,
-        0,    0,   40,   39,    1,   23,   39,   19,   20,   13,
-       11,   18,   12,   14,   38,   16,   17,    5,    7,    9,
-       37,   37,   37,   37,   37,   37,   37,   37,   37,   37,
-       21,   22,    1,    0,    2,    0,    0,    0,   38,   15,
-        6,    8,   10,   37,   37,   37,   37,   37,   37,   37,
-       37,   37,   37,   37,   30,   37,   37,    0,    0,    0,
-        3,   38,   38,   37,   37,   37,   37,   37,   37,   37,
-       37,   37,   37,   37,   37,    4,   37,   37,   37,   37,
-       37,   33,   37,   37,   27,   37,   37,   37,   37,   37,
-       37,   35,   37,   37,   37,   31,   37,   37,   37,   37,
+        0,    0,   40,   39,    1,   21,   39,   17,   18,   11,
+        9,   16,   10,   12,   36,   14,   15,    3,    5,    7,
+       35,   35,   35,   35,   35,   35,   35,   35,   35,   35,
+       19,   20,    1,    0,    2,    0,    0,    0,   36,   13,
+        4,    6,    8,   35,   35,   35,   35,   35,   35,   35,
+       35,   35,   35,   35,   28,   35,   35,    0,    0,    0,
+       37,   36,   36,   35,   35,   35,   35,   35,   35,   35,
+       35,   35,   35,   35,   35,   38,   35,   35,   35,   35,
+       35,   31,   35,   35,   25,   35,   35,   35,   35,   35,
+       35,   33,   35,   35,   35,   29,   35,   35,   35,   35,
 
-       37,   37,   28,   37,   37,   37,   37,   37,   34,   26,
-       37,   37,   37,   29,   32,   24,   37,   37,   25,   37,
-       36,    0
+       35,   35,   26,   35,   35,   35,   35,   35,   32,   24,
+       35,   35,   35,   27,   30,   22,   35,   35,   23,   35,
+       34,    0
     } ;
 
 static yyconst flex_int32_t yy_ec[256] =
@@ -868,186 +868,186 @@ YY_RULE_SETUP
 {}
 	YY_BREAK
 case 3:
-/* rule 3 can match eol */
 YY_RULE_SETUP
 #line 81 "lex.l"
-{}
+{printf("%s\n", MENOR_Q);}
 	YY_BREAK
 case 4:
-/* rule 4 can match eol */
 YY_RULE_SETUP
 #line 82 "lex.l"
-{}
+{printf("%s\n", MENOR_I);}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
 #line 83 "lex.l"
-{printf("%s\n", MENOR_Q);}
+{printf("%s\n", IGUAL);}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
 #line 84 "lex.l"
-{printf("%s\n", MENOR_I);}
+{printf("%s\n", DIFERENTE);}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
 #line 85 "lex.l"
-{printf("%s\n", IGUAL);}
+{printf("%s\n", MAIOR_Q);}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
 #line 86 "lex.l"
-{printf("%s\n", DIFERENTE);}
+{printf("%s\n", MAIOR_I);}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
 #line 87 "lex.l"
-{printf("%s\n", MAIOR_Q);}
+{printf("%s\n", MAIS);}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
 #line 88 "lex.l"
-{printf("%s\n", MAIOR_I);}
+{printf("%s\n", MENOS);}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
 #line 89 "lex.l"
-{printf("%s\n", MAIS);}
+{printf("%s\n", VEZES);}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
 #line 90 "lex.l"
-{printf("%s\n", MENOS);}
+{printf("%s\n", DIVIDIR);}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
 #line 91 "lex.l"
-{printf("%s\n", VEZES);}
+{printf("%s\n", ATRIB);}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
 #line 92 "lex.l"
-{printf("%s\n", DIVIDIR);}
+{printf("%s\n", DPONTOS);}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
 #line 93 "lex.l"
-{printf("%s\n", ATRIB);}
+{printf("%s\n", PVIRG);}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
 #line 94 "lex.l"
-{printf("%s\n", DPONTOS);}
+{printf("%s\n", VIRG);}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
 #line 95 "lex.l"
-{printf("%s\n", PVIRG);}
+{printf("%s\n", ABREPAR);}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
 #line 96 "lex.l"
-{printf("%s\n", VIRG);}
+{printf("%s\n", FECHAPAR);}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
 #line 97 "lex.l"
-{printf("%s\n", ABREPAR);}
+{printf("%s\n", ABRECH);}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
 #line 98 "lex.l"
-{printf("%s\n", FECHAPAR);}
+{printf("%s\n", FECHACH);}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
 #line 99 "lex.l"
-{printf("%s\n", ABRECH);}
+{printf("%s\n", OPNEG);}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
 #line 100 "lex.l"
-{printf("%s\n", FECHACH);}
+{printf("%s\n", PROGRAMA);}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
 #line 101 "lex.l"
-{printf("%s\n", OPNEG);}
+{printf("%s\n", VARIAVEIS);}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
 #line 102 "lex.l"
-{printf("%s\n", PROGRAMA);}
+{printf("%s\n", INTEIRO);}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
 #line 103 "lex.l"
-{printf("%s\n", VARIAVEIS);}
+{printf("%s\n", REAL);}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
 #line 104 "lex.l"
-{printf("%s\n", INTEIRO);}
+{printf("%s\n", LOGICO);}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
 #line 105 "lex.l"
-{printf("%s\n", REAL);}
+{printf("%s\n", CARACTER);}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
 #line 106 "lex.l"
-{printf("%s\n", LOGICO);}
+{printf("%s\n", SE);}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
 #line 107 "lex.l"
-{printf("%s\n", CARACTER);}
+{printf("%s\n", SENAO);}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
 #line 108 "lex.l"
-{printf("%s\n", SE);}
+{printf("%s\n", ENQUANTO);}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
 #line 109 "lex.l"
-{printf("%s\n", SENAO);}
+{printf("%s\n", LEIA);}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
 #line 110 "lex.l"
-{printf("%s\n", ENQUANTO);}
+{printf("%s\n", ESCREVA);}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
 #line 111 "lex.l"
-{printf("%s\n", LEIA);}
+{printf("%s\n", FALSO);}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
 #line 112 "lex.l"
-{printf("%s\n", ESCREVA);}
+{printf("%s\n", VERDADEIRO);}
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
 #line 113 "lex.l"
-{printf("%s\n", FALSO);}
+{printf("%s\n", ID);}
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
 #line 114 "lex.l"
-{printf("%s\n", VERDADEIRO);}
+{printf("%s\n", CTE);}
 	YY_BREAK
 case 37:
+/* rule 37 can match eol */
 YY_RULE_SETUP
 #line 115 "lex.l"
-{printf("%s\n", ID);}
+{}
 	YY_BREAK
 case 38:
+/* rule 38 can match eol */
 YY_RULE_SETUP
 #line 116 "lex.l"
-{printf("%s\n", CTE);}
+{}
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
@@ -2061,12 +2061,9 @@ void yyfree (void * ptr )
 
 int main(int argc, char const *argv[]) {
 	
-	int aux = 1;
-
 	yyin = fopen(argv[1], "r");
-	while (aux) {
-		aux = yylex();
-	}
+	yylex();
+	
 
 	return 0;
 }

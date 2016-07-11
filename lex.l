@@ -43,7 +43,6 @@
 /* regular definitions */
 ESPACO [ \t\f\r\n]+
 ASPAS ["]
-CADEIA {ASPAS}[^{ASPAS}]*{ASPAS}
 PROGRAMA "programa"
 VARIAVEIS "variaveis"
 INTEIRO "inteiro"
@@ -57,8 +56,6 @@ LEIA "leia"
 ESCREVA "escreva"
 FALSO "falso"
 VERDADEIRO "verdadeiro"
-ID [a-z]+([a-z]|[0-9])*
-CTE [0-9]|[0-9]+(.[0-9]+)?
 ATRIB ":="
 OPREL ">"|"<"|"="|">="|"<="|"<>"
 OPAD [+-]
@@ -71,6 +68,9 @@ ABREPAR "("
 FECHAPAR ")"
 ABRECH "{"
 FECHACH "}"
+CADEIA {ASPAS}[^{ASPAS}]*{ASPAS}
+ID [a-z]+([a-z]|[0-9])*
+CTE [0-9]|[0-9]+(.[0-9]+)?
 COMENTARIO_BLOCO "/*"[^"*/"]*"*/"
 COMENTARIO_LINHA "//"[^"\n"]*"\n"
 
@@ -78,8 +78,6 @@ COMENTARIO_LINHA "//"[^"\n"]*"\n"
 
 {ESPACO} {}
 {CADEIA} {}
-{COMENTARIO_LINHA} {}
-{COMENTARIO_BLOCO} {}
 "<"	{printf("%s\n", MENOR_Q);}
 "<=" {printf("%s\n", MENOR_I);}
 "="	{printf("%s\n", IGUAL);}
@@ -114,6 +112,8 @@ COMENTARIO_LINHA "//"[^"\n"]*"\n"
 {VERDADEIRO} {printf("%s\n", VERDADEIRO);}
 {ID} {printf("%s\n", ID);}
 {CTE} {printf("%s\n", CTE);}
+{COMENTARIO_LINHA} {}
+{COMENTARIO_BLOCO} {}
 
 %%
 
@@ -123,12 +123,9 @@ COMENTARIO_LINHA "//"[^"\n"]*"\n"
 
 int main(int argc, char const *argv[]) {
 	
-	int aux = 1;
-
 	yyin = fopen(argv[1], "r");
-	while (aux) {
-		aux = yylex();
-	}
+	yylex();
+	
 
 	return 0;
 }
