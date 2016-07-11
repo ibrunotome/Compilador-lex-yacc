@@ -1,61 +1,66 @@
 %{
-	#define MENOR_Q "OPREL"
-	#define MENOR_I "OPREL"
-	#define IGUAL "OPREL"
-	#define DIFERENTE "OPREL"
-	#define MAIOR_Q "OPREL"
-	#define MAIOR_I "OPREL"
-	#define SE "SE"
-	#define SENAO "SENAO"
-	#define ID "ID"
-	#define CTE "CTE"
-	#define MAIS "OPAD"
-	#define MENOS "OPAD"
-	#define VEZES "OPMUL"
-	#define DIVIDIR "OPMUL"
-	#define ATRIB "ATRIB"
-	#define PVIRG "PVIRG"
-	#define DPONTOS "DPONTOS"
-	#define VIRG "VIRG"
-	#define ABRECH "ABRECH"
-	#define ABREPAR "ABREPAR"
-	#define FECHACH "FECHACH"
-	#define FECHAPAR "FECHAPAR"
-	#define ESPACO "ESPACO"
-	#define PROGRAMA "PROGRAMA"
-	#define VARIAVEIS "VARIAVEIS"
-	#define INTEIRO "INTEIRO"
-	#define REAL "REAL"
-	#define LOGICO "LOGICO"
-	#define CARACTER "CARACTER"
-	#define ESCREVA "ESCREVA"
-	#define LEIA "LEIA"
-	#define FALSO "FALSO"
-	#define VERDADEIRO "VERDADEIRO"
-	#define ENQUANTO "ENQUANTO"
-	#define OPREL "OPREL"
-	#define OPAD "OPAD"
-	#define OPMUL "OPMUL"
-	#define OPNEG "OPNEG"
-	#define CADEIA "CADEIA"
+	enum {
+		MENOR_Q = 256,
+		MENOR_I,
+		IGUAL,
+		DIFERENTE,
+		MAIOR_Q,
+		MAIOR_I,
+		SE,
+		SENAO,
+		ID,
+		CTE,
+		MAIS,
+		MENOS,
+		VEZES,
+		DIVIDIR,
+		ATRIB,
+		PVIRG,
+		DPONTOS,
+		VIRG,
+		ABRECH,
+		ABREPAR,
+		FECHACH,
+		FECHAPAR,
+		ESPACO,
+		PROGRAMA,
+		VARIAVEIS,
+		INTEIRO,
+		REAL,
+		LOGICO,
+		CARACTER,
+		ESCREVA,
+		LEIA,
+		FALSO,
+		VERDADEIRO,
+		ENQUANTO,
+		OPREL,
+		OPAD,
+		OPMUL,
+		OPNEG,
+		CADEIA,
+		ERRO
+	};
+	  
 %}
 
 /* regular definitions */
 ESPACO [ \t\f\r\n]+
-ASPAS ["]
-PROGRAMA "programa"
-VARIAVEIS "variaveis"
-INTEIRO "inteiro"
-REAL "real"
-LOGICO "logico"
-CARACTER "caracter"
-SE "se"
-SENAO "senao"
-ENQUANTO "enquanto"
-LEIA "leia"
-ESCREVA "escreva"
-FALSO "falso"
-VERDADEIRO "verdadeiro"
+ASPAS "\""
+CADEIA {ASPAS}[^{ASPAS}]*{ASPAS}
+PROGRAMA "programa"|"PROGRAMA"
+VARIAVEIS "variaveis"|"VARIAVEIS"
+INTEIRO "inteiro"|"INTEIRO"
+REAL "real"|"REAL"
+LOGICO "logico"|"LOGICO"
+CARACTER "caracter"|"CARACTER"
+SE "se"|"SE"
+SENAO "senao"|"SENAO"
+ENQUANTO "enquanto"|"ENQUANTO"
+LEIA "leia"|"LEIA"
+ESCREVA "escreva"|"ESCREVA"
+FALSO "falso"|"FALSO"
+VERDADEIRO "verdadeiro"|"VERDADEIRO"
 ATRIB ":="
 OPREL ">"|"<"|"="|">="|"<="|"<>"
 OPAD [+-]
@@ -68,7 +73,6 @@ ABREPAR "("
 FECHAPAR ")"
 ABRECH "{"
 FECHACH "}"
-CADEIA {ASPAS}[^{ASPAS}]*{ASPAS}
 ID [a-z]+([a-z]|[0-9])*
 CTE [0-9]|[0-9]+(.[0-9]+)?
 COMENTARIO_BLOCO [/][*][^*]*[*]+([^*/][^*]*[*]+)*[/]  
@@ -77,43 +81,44 @@ COMENTARIO_LINHA "//"[^"\n"]*"\n"
 %%
 
 {ESPACO} {}
-{CADEIA} {}
-"<"	{printf("%s\n", MENOR_Q);}
-"<=" {printf("%s\n", MENOR_I);}
-"="	{printf("%s\n", IGUAL);}
-"<>" {printf("%s\n", DIFERENTE);}
-">"	{printf("%s\n", MAIOR_Q);}
-">=" {printf("%s\n", MAIOR_I);}
-"+"	{printf("%s\n", MAIS);}
-"-"	{printf("%s\n", MENOS);}
-"*"	{printf("%s\n", VEZES);}
-"/"	{printf("%s\n", DIVIDIR);}
-":=" {printf("%s\n", ATRIB);}
-":" {printf("%s\n", DPONTOS);}
-";" {printf("%s\n", PVIRG);}
-"," {printf("%s\n", VIRG);}
-"(" {printf("%s\n", ABREPAR);}
-")" {printf("%s\n", FECHAPAR);}
-"{" {printf("%s\n", ABRECH);}
-"}" {printf("%s\n", FECHACH);}
-"!" {printf("%s\n", OPNEG);}
-{PROGRAMA} {printf("%s\n", PROGRAMA);}
-{VARIAVEIS} {printf("%s\n", VARIAVEIS);}
-{INTEIRO} {printf("%s\n", INTEIRO);}
-{REAL} {printf("%s\n", REAL);}
-{LOGICO} {printf("%s\n", LOGICO);}
-{CARACTER} {printf("%s\n", CARACTER);}
-{SE} {printf("%s\n", SE);}
-{SENAO} {printf("%s\n", SENAO);}
-{ENQUANTO} {printf("%s\n", ENQUANTO);}
-{LEIA} {printf("%s\n", LEIA);}
-{ESCREVA} {printf("%s\n", ESCREVA);}
-{FALSO} {printf("%s\n", FALSO);}
-{VERDADEIRO} {printf("%s\n", VERDADEIRO);}
-{ID} {printf("%s\n", ID);}
-{CTE} {printf("%s\n", CTE);}
+{CADEIA} {return CADEIA;}
+"<"	{yylval = MENOR_Q; return MENOR_Q;}
+"<=" {yylval = MENOR_I; return MENOR_I;}
+"="	{yylval = IGUAL; return IGUAL;}
+"<>" {yylval = DIFERENTE; return DIFERENTE;}
+">"	{yylval = MAIOR_Q; return MAIOR_Q;}
+">=" {yylval = MAIOR_I; return MAIOR_I;}
+"+"	{yylval = MAIS; return MAIS;}
+"-"	{yylval = MENOS; return MENOS;}
+"*"	{yylval = VEZES; return VEZES;}
+"/"	{yylval = DIVIDIR; return DIVIDIR;}
+":=" {yylval = ATRIB; return ATRIB;}
+":" {yylval = DPONTOS; return DPONTOS;}
+";" {yylval = PVIRG; return PVIRG;}
+"," {yylval = VIRG; return VIRG;}
+"(" {yylval = ABREPAR; return ABREPAR;}
+")" {yylval = FECHAPAR; return FECHAPAR;}
+"{" {yylval = ABRECH; return ABRECH;}
+"}" {yylval = FECHACH; return FECHACH;}
+"!" {yylval = OPNEG; return OPNEG;}
+{PROGRAMA} {printf("%d\n", PROGRAMA); return PROGRAMA;}
+{VARIAVEIS} {printf("%d\n", VARIAVEIS); return VARIAVEIS;}
+{INTEIRO} {printf("%d\n", INTEIRO); return INTEIRO;}
+{REAL} {printf("%d\n", REAL); return REAL;}
+{LOGICO} {printf("%d\n", LOGICO); return LOGICO;}
+{CARACTER} {printf("%d\n", CARACTER); return CARACTER;}
+{SE} {printf("%d\n", SE); return SE;}
+{SENAO} {printf("%d\n", SENAO); return SENAO;}
+{ENQUANTO} {printf("%d\n", ENQUANTO); return ENQUANTO;}
+{LEIA} {printf("%d\n", LEIA); return LEIA;}
+{ESCREVA} {printf("%d\n", ESCREVA); return ESCREVA;}
+{FALSO} {printf("%d\n", FALSO); return FALSO;}
+{VERDADEIRO} {printf("%d\n", VERDADEIRO); return VERDADEIRO;}
+{ID} {yylval = installID(); return ID;}
+{CTE} {printf("%d\n", CTE); return CTE;}
 {COMENTARIO_LINHA} {}
 {COMENTARIO_BLOCO} {}
+. {yylval = yytext[0]; return ERRO;}
 
 %%
 
@@ -124,8 +129,11 @@ COMENTARIO_LINHA "//"[^"\n"]*"\n"
 int main(int argc, char const *argv[]) {
 	
 	yyin = fopen(argv[1], "r");
-	yylex();
-	
+	int aux = 1;
 
+	while (aux) {
+		aux = yylex();
+	}
+	
 	return 0;
 }
