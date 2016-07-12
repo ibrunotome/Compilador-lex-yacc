@@ -1,3 +1,43 @@
+%token MENOR_Q
+%token MENOR_I
+%token IGUAL
+%token DIFERENTE
+%token MAIOR_Q
+%token MAIOR_I
+%token SE
+%token SENAO
+%token ID
+%token CTE
+%token MAIS
+%token MENOS
+%token VEZES
+%token DIVIDIR
+%token ATRIB
+%token PVIRG
+%token DPONTOS
+%token VIRG
+%token ABRECH
+%token ABREPAR
+%token FECHACH
+%token FECHAPAR
+%token PROGRAMA
+%token VARIAVEIS
+%token INTEIRO
+%token REAL
+%token LOGICO
+%token CARACTER
+%token ESCREVA
+%token LEIA
+%token FALSO
+%token VERDADEIRO
+%token ENQUANTO
+%token OPREL
+%token OPAD
+%token OPMUL
+%token OPNEG
+%token CADEIA
+%token ERRO
+
 %% /∗ beginning of rules section ∗/
 
 PROG: programa id pvirg DECLS C-COMP

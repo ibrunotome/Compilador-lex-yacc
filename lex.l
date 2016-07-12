@@ -41,6 +41,12 @@
 		CADEIA,
 		ERRO
 	};
+
+	int yylval;
+
+	int installID() {
+		return 1000;
+	}
 	  
 %}
 
@@ -101,21 +107,21 @@ COMENTARIO_LINHA "//"[^"\n"]*"\n"
 "{" {yylval = ABRECH; return ABRECH;}
 "}" {yylval = FECHACH; return FECHACH;}
 "!" {yylval = OPNEG; return OPNEG;}
-{PROGRAMA} {printf("%d\n", PROGRAMA); return PROGRAMA;}
-{VARIAVEIS} {printf("%d\n", VARIAVEIS); return VARIAVEIS;}
-{INTEIRO} {printf("%d\n", INTEIRO); return INTEIRO;}
-{REAL} {printf("%d\n", REAL); return REAL;}
-{LOGICO} {printf("%d\n", LOGICO); return LOGICO;}
-{CARACTER} {printf("%d\n", CARACTER); return CARACTER;}
-{SE} {printf("%d\n", SE); return SE;}
-{SENAO} {printf("%d\n", SENAO); return SENAO;}
-{ENQUANTO} {printf("%d\n", ENQUANTO); return ENQUANTO;}
-{LEIA} {printf("%d\n", LEIA); return LEIA;}
-{ESCREVA} {printf("%d\n", ESCREVA); return ESCREVA;}
-{FALSO} {printf("%d\n", FALSO); return FALSO;}
-{VERDADEIRO} {printf("%d\n", VERDADEIRO); return VERDADEIRO;}
+{PROGRAMA} {yylval = installID(); return PROGRAMA;}
+{VARIAVEIS} {yylval = installID(); return VARIAVEIS;}
+{INTEIRO} {yylval = installID(); return INTEIRO;}
+{REAL} {yylval = installID(); return REAL;}
+{LOGICO} {yylval = installID(); return LOGICO;}
+{CARACTER} {yylval = installID(); return CARACTER;}
+{SE} {yylval = SE; return installID();}
+{SENAO} {yylval = installID(); return SENAO;}
+{ENQUANTO} {yylval = installID(); return ENQUANTO;}
+{LEIA} {yylval = installID(); return LEIA;}
+{ESCREVA} {yylval = installID(); return ESCREVA;}
+{FALSO} {yylval = installID(); return FALSO;}
+{VERDADEIRO} {yylval = installID(); return VERDADEIRO;}
 {ID} {yylval = installID(); return ID;}
-{CTE} {printf("%d\n", CTE); return CTE;}
+{CTE} {yylval = installID(); return CTE;}
 {COMENTARIO_LINHA} {}
 {COMENTARIO_BLOCO} {}
 . {yylval = yytext[0]; return ERRO;}
@@ -127,7 +133,6 @@ COMENTARIO_LINHA "//"[^"\n"]*"\n"
  */
 
 int main(int argc, char const *argv[]) {
-	
 	yyin = fopen(argv[1], "r");
 	int aux = 1;
 

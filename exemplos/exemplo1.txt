@@ -1,5 +1,6 @@
 //Programa sem erros
 PROGRAMA exemplo1;
+/**_/*/
 VARIAVEIS x,y: INTEIRO;
           c:   CARACTER;
           r:   REAL;
