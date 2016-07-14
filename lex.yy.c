@@ -606,48 +606,8 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "lex.l"
 #line 2 "lex.l"
-	enum {
-		MENOR_Q = 256,
-		MENOR_I,
-		IGUAL,
-		DIFERENTE,
-		MAIOR_Q,
-		MAIOR_I,
-		SE,
-		SENAO,
-		ID,
-		CTE,
-		MAIS,
-		MENOS,
-		VEZES,
-		DIVIDIR,
-		ATRIB,
-		PVIRG,
-		DPONTOS,
-		VIRG,
-		ABRECH,
-		ABREPAR,
-		FECHACH,
-		FECHAPAR,
-		ESPACO,
-		PROGRAMA,
-		VARIAVEIS,
-		INTEIRO,
-		REAL,
-		LOGICO,
-		CARACTER,
-		ESCREVA,
-		LEIA,
-		FALSO,
-		VERDADEIRO,
-		ENQUANTO,
-		OPREL,
-		OPAD,
-		OPMUL,
-		OPNEG,
-		CADEIA,
-		ERRO
-	};
+
+	#include "y.tab.h"
 
 	int yylval;
 
@@ -656,7 +616,7 @@ char *yytext;
 	}
 	  
 /* regular definitions */
-#line 660 "lex.yy.c"
+#line 620 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -838,10 +798,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 87 "lex.l"
+#line 47 "lex.l"
 
 
-#line 845 "lex.yy.c"
+#line 805 "lex.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -927,208 +887,208 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 89 "lex.l"
+#line 49 "lex.l"
 {}
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 90 "lex.l"
+#line 50 "lex.l"
 {return CADEIA;}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 91 "lex.l"
+#line 51 "lex.l"
 {yylval = MENOR_Q; return MENOR_Q;}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 92 "lex.l"
+#line 52 "lex.l"
 {yylval = MENOR_I; return MENOR_I;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 93 "lex.l"
+#line 53 "lex.l"
 {yylval = IGUAL; return IGUAL;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 94 "lex.l"
+#line 54 "lex.l"
 {yylval = DIFERENTE; return DIFERENTE;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 95 "lex.l"
+#line 55 "lex.l"
 {yylval = MAIOR_Q; return MAIOR_Q;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 96 "lex.l"
+#line 56 "lex.l"
 {yylval = MAIOR_I; return MAIOR_I;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 97 "lex.l"
+#line 57 "lex.l"
 {yylval = MAIS; return MAIS;}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 98 "lex.l"
+#line 58 "lex.l"
 {yylval = MENOS; return MENOS;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 99 "lex.l"
+#line 59 "lex.l"
 {yylval = VEZES; return VEZES;}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 100 "lex.l"
+#line 60 "lex.l"
 {yylval = DIVIDIR; return DIVIDIR;}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 101 "lex.l"
+#line 61 "lex.l"
 {yylval = ATRIB; return ATRIB;}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 102 "lex.l"
+#line 62 "lex.l"
 {yylval = DPONTOS; return DPONTOS;}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 103 "lex.l"
+#line 63 "lex.l"
 {yylval = PVIRG; return PVIRG;}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 104 "lex.l"
+#line 64 "lex.l"
 {yylval = VIRG; return VIRG;}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 105 "lex.l"
+#line 65 "lex.l"
 {yylval = ABREPAR; return ABREPAR;}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 106 "lex.l"
+#line 66 "lex.l"
 {yylval = FECHAPAR; return FECHAPAR;}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 107 "lex.l"
+#line 67 "lex.l"
 {yylval = ABRECH; return ABRECH;}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 108 "lex.l"
+#line 68 "lex.l"
 {yylval = FECHACH; return FECHACH;}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 109 "lex.l"
+#line 69 "lex.l"
 {yylval = OPNEG; return OPNEG;}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 110 "lex.l"
+#line 70 "lex.l"
 {yylval = installID(); return PROGRAMA;}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 111 "lex.l"
+#line 71 "lex.l"
 {yylval = installID(); return VARIAVEIS;}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 112 "lex.l"
+#line 72 "lex.l"
 {yylval = installID(); return INTEIRO;}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 113 "lex.l"
+#line 73 "lex.l"
 {yylval = installID(); return REAL;}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 114 "lex.l"
+#line 74 "lex.l"
 {yylval = installID(); return LOGICO;}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 115 "lex.l"
+#line 75 "lex.l"
 {yylval = installID(); return CARACTER;}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 116 "lex.l"
+#line 76 "lex.l"
 {yylval = SE; return installID();}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 117 "lex.l"
+#line 77 "lex.l"
 {yylval = installID(); return SENAO;}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 118 "lex.l"
+#line 78 "lex.l"
 {yylval = installID(); return ENQUANTO;}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 119 "lex.l"
+#line 79 "lex.l"
 {yylval = installID(); return LEIA;}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 120 "lex.l"
+#line 80 "lex.l"
 {yylval = installID(); return ESCREVA;}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 121 "lex.l"
+#line 81 "lex.l"
 {yylval = installID(); return FALSO;}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 122 "lex.l"
+#line 82 "lex.l"
 {yylval = installID(); return VERDADEIRO;}
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 123 "lex.l"
+#line 83 "lex.l"
 {yylval = installID(); return ID;}
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 124 "lex.l"
+#line 84 "lex.l"
 {yylval = installID(); return CTE;}
 	YY_BREAK
 case 37:
 /* rule 37 can match eol */
 YY_RULE_SETUP
-#line 125 "lex.l"
+#line 85 "lex.l"
 {}
 	YY_BREAK
 case 38:
 /* rule 38 can match eol */
 YY_RULE_SETUP
-#line 126 "lex.l"
+#line 86 "lex.l"
 {}
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 127 "lex.l"
+#line 87 "lex.l"
 {yylval = yytext[0]; return ERRO;}
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 129 "lex.l"
+#line 89 "lex.l"
 ECHO;
 	YY_BREAK
-#line 1132 "lex.yy.c"
+#line 1092 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2125,22 +2085,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 129 "lex.l"
+#line 89 "lex.l"
 
 
-
-/**
- * 
- */
-
-int main(int argc, char const *argv[]) {
-	yyin = fopen(argv[1], "r");
-	int aux = 1;
-
-	while (aux) {
-		aux = yylex();
-	}
-	
-	return 0;
-}
 

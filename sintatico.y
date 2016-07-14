@@ -38,96 +38,98 @@
 %token CADEIA
 %token ERRO
 
-%% /∗ beginning of rules section ∗/
+%% /* beginning of rules section */
 
-PROG: programa id pvirg DECLS C-COMP
+prog: PROGRAMA ID PVIRG decls ccomp
 	;	
-DECLS: /* empty*/  
-	 | variaveis LIST-DECLS
+decls: /* empty*/  
+	 | VARIAVEIS listdecls
 	 ;
-LIST-DECLS: DECL-TIPO D
+listdecls: decltipo d
 		  ;
-D: /* empty*/
- | LIST-DECLS
+d: /* empty*/
+ | listdecls
  ;
-DECL-TIPO: LIST-ID dpontos TIPO pvirg
+decltipo: listid DPONTOS tipo PVIRG
 		 ;
-LIST-ID: id E
+listid: ID e
        ;
-E: /* empty*/ 
- | virg LIST-ID
+e: /* empty*/ 
+ | VIRG listid
  ;
-TIPO: inteiro 
-    | real 
-    | logico 
-    | caracter
+tipo: INTEIRO 
+    | REAL 
+    | LOGICO 
+    | CARACTER
     ;
-C-COMP: abrech LISTA-COMANDOS fechach
+ccomp: ABRECH listacomandos FECHACH
 	  ;	
-LISTA-COMANDOS: COMANDOS G
+listacomandos: comandos g
 			  ;
-G: /* empty*/ 
- | LISTA-COMANDOS
-COMANDOS: IF 
-		| WHILE 
-		| READ 
-		| WRITE 
-		| ATRIB
+g: /* empty*/ 
+ | listacomandos
+comandos: if 
+		| while 
+		| read 
+		| write 
+		| atrib
 		;
-IF: se abrepar EXPR fechapar C-COMP H
+if: SE ABREPAR expr FECHAPAR ccomp h
   ;
-H: /* empty*/ 
- | senao C-COMP
+h: /* empty*/ 
+ | SENAO ccomp
  ;
-WHILE:  enquanto abrepar EXPR fechapar C-COMP
+while:  ENQUANTO ABREPAR expr FECHAPAR ccomp
 	 ;
-READ: leia abrepar LIST-ID fechapar pvirg
+read: LEIA ABREPAR listid FECHAPAR PVIRG
     ;
-ATRIB: id atrib EXPR pvirg
+atrib: ID ATRIB expr PVIRG
 	 ;
-WRITE: escreva abrepar LIST-W fechapar pvirg
+write: ESCREVA ABREPAR listw FECHAPAR PVIRG
      ;
-LIST-W: ELEM-W L
+listw: elemw l
       ;
-L: /* empty*/
- | virg LIST-W
+l: /* empty*/
+ | VIRG listw
  ;
-ELEM-W: EXPR | cadeia
+elemw: expr | CADEIA
 	  ;
-EXPR: SIMPLES P
+expr: simples p
     ;
-P: /* empty*/
- | oprel SIMPLES
+p: /* empty*/
+ | OPREL simples
  ;
-SIMPLES: TERMO R
+simples: termo r
 	   ;
-R: /* empty*/ 
- | opad SIMPLES
+r: /* empty*/ 
+ | OPAD simples
  ;
-TERMO: FAT S
-S: /* empty*/ 
- | opmul TERMO
+termo: fat s
+s: /* empty*/ 
+ | OPMUL termo
  ;
-FAT: id
-   | cte
-   | abrepar EXPR fechapar
-   | verdadeiro
-   | falso
-   | opneg FAT
+fat: ID
+   | CTE
+   | ABREPAR expr FECHAPAR
+   | VERDADEIRO
+   | FALSO
+   | OPNEG fat
    ;
 %%
 
 #include "lex.yy.c"
-int yyerror( char *s)
-{
+
+// extern yyin;
+// extern yytext;
+
+int yyerror( char *s) {
     fprintf(stderr, "%s\n", s);
     return 0;
 } 
-int main(int argc, char *argv[])
-{
-    yyin=fopen(argv[1], "r");
-    if(!yyin)
-    {
+
+int main(int argc, char *argv[]) {
+    yyin = fopen(argv[1], "r");
+    if (!yyin) {
         printf("O arquivo %s nao existe \n", argv[1]);
         exit(1);
     }     

@@ -1,46 +1,6 @@
 %{
-	enum {
-		MENOR_Q = 256,
-		MENOR_I,
-		IGUAL,
-		DIFERENTE,
-		MAIOR_Q,
-		MAIOR_I,
-		SE,
-		SENAO,
-		ID,
-		CTE,
-		MAIS,
-		MENOS,
-		VEZES,
-		DIVIDIR,
-		ATRIB,
-		PVIRG,
-		DPONTOS,
-		VIRG,
-		ABRECH,
-		ABREPAR,
-		FECHACH,
-		FECHAPAR,
-		ESPACO,
-		PROGRAMA,
-		VARIAVEIS,
-		INTEIRO,
-		REAL,
-		LOGICO,
-		CARACTER,
-		ESCREVA,
-		LEIA,
-		FALSO,
-		VERDADEIRO,
-		ENQUANTO,
-		OPREL,
-		OPAD,
-		OPMUL,
-		OPNEG,
-		CADEIA,
-		ERRO
-	};
+
+	#include "y.tab.h"
 
 	int yylval;
 
@@ -81,7 +41,7 @@ ABRECH "{"
 FECHACH "}"
 ID [a-z]+([a-z]|[0-9])*
 CTE [0-9]|[0-9]+(.[0-9]+)?
-COMENTARIO_BLOCO [/][*][^*]*[*]+([^*/][^*]*[*]+)*[/]  
+COMENTARIO_BLOCO [/][*][^*]*[*]+([^*/][^*]*[*]+)*[/]
 COMENTARIO_LINHA "//"[^"\n"]*"\n"
 
 %%
@@ -127,18 +87,3 @@ COMENTARIO_LINHA "//"[^"\n"]*"\n"
 . {yylval = yytext[0]; return ERRO;}
 
 %%
-
-/**
- * 
- */
-
-int main(int argc, char const *argv[]) {
-	yyin = fopen(argv[1], "r");
-	int aux = 1;
-
-	while (aux) {
-		aux = yylex();
-	}
-	
-	return 0;
-}
