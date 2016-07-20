@@ -12,7 +12,7 @@ VARIAVEIS x,y: INTEIRO;
     b:=VERDADEIRO;
     ENQUANTO(b)
     { 
-        SE(y > 10)
+        SE(y>10)
         { 
              ESCREVA(y);
         }

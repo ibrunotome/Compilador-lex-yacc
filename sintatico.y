@@ -41,73 +41,102 @@
 %% /* beginning of rules section */
 
 prog: PROGRAMA ID PVIRG decls ccomp
-	;	
+	;
+  
 decls: /* empty*/  
 	 | VARIAVEIS listdecls
 	 ;
+
 listdecls: decltipo d
 		  ;
+
 d: /* empty*/
  | listdecls
  ;
+
 decltipo: listid DPONTOS tipo PVIRG
 		 ;
+
 listid: ID e
        ;
+
 e: /* empty*/ 
  | VIRG listid
  ;
+
 tipo: INTEIRO 
     | REAL 
     | LOGICO 
     | CARACTER
     ;
+
 ccomp: ABRECH listacomandos FECHACH
 	  ;	
+
 listacomandos: comandos g
 			  ;
+
 g: /* empty*/ 
  | listacomandos
+ ;
+
 comandos: if 
 		| while 
 		| read 
 		| write 
 		| atrib
 		;
+
 if: SE ABREPAR expr FECHAPAR ccomp h
   ;
+
 h: /* empty*/ 
  | SENAO ccomp
  ;
-while:  ENQUANTO ABREPAR expr FECHAPAR ccomp
+
+while: ENQUANTO ABREPAR expr FECHAPAR ccomp
 	 ;
+
 read: LEIA ABREPAR listid FECHAPAR PVIRG
     ;
+
 atrib: ID ATRIB expr PVIRG
 	 ;
+
 write: ESCREVA ABREPAR listw FECHAPAR PVIRG
      ;
+
 listw: elemw l
       ;
+
 l: /* empty*/
  | VIRG listw
  ;
+
 elemw: expr | CADEIA
 	  ;
+
 expr: simples p
     ;
+
 p: /* empty*/
  | OPREL simples
  ;
+
 simples: termo r
 	   ;
+
 r: /* empty*/ 
  | OPAD simples
  ;
+
 termo: fat s
+      ;
+
 s: /* empty*/ 
  | OPMUL termo
  ;
+
 fat: ID
    | CTE
    | ABREPAR expr FECHAPAR
@@ -117,13 +146,15 @@ fat: ID
    ;
 %%
 
+#include <stdio.h>
+#include <stdlib.h>
 #include "lex.yy.c"
 
-// extern yyin;
-// extern yytext;
+/* extern yyin;
+ extern yytext; */
 
-int yyerror( char *s) {
-    fprintf(stderr, "%s\n", s);
+int yyerror(char *s) {
+    fprintf(stderr, "%s, linha: %d, token: %d\n", s, countLinhas, yylval);
     return 0;
 } 
 

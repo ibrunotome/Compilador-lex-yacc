@@ -3,6 +3,7 @@
 	#include "y.tab.h"
 
 	int yylval;
+	int countLinhas = 1;
 
 	int installID() {
 		return 1000;
@@ -11,7 +12,8 @@
 %}
 
 /* regular definitions */
-ESPACO [ \t\f\r\n]+
+LINHA \n
+ESPACO [ \t\f\r]+
 ASPAS "\""
 CADEIA {ASPAS}[^{ASPAS}]*{ASPAS}
 PROGRAMA "programa"|"PROGRAMA"
@@ -46,18 +48,19 @@ COMENTARIO_LINHA "//"[^"\n"]*"\n"
 
 %%
 
+{LINHA} {countLinhas++;}
 {ESPACO} {}
 {CADEIA} {return CADEIA;}
-"<"	{yylval = MENOR_Q; return MENOR_Q;}
-"<=" {yylval = MENOR_I; return MENOR_I;}
-"="	{yylval = IGUAL; return IGUAL;}
-"<>" {yylval = DIFERENTE; return DIFERENTE;}
-">"	{yylval = MAIOR_Q; return MAIOR_Q;}
-">=" {yylval = MAIOR_I; return MAIOR_I;}
-"+"	{yylval = MAIS; return MAIS;}
-"-"	{yylval = MENOS; return MENOS;}
-"*"	{yylval = VEZES; return VEZES;}
-"/"	{yylval = DIVIDIR; return DIVIDIR;}
+"<"	{yylval = MENOR_Q; return OPREL;}
+"<=" {yylval = MENOR_I; return OPREL;}
+"="	{yylval = IGUAL; return OPREL;}
+"<>" {yylval = DIFERENTE; return OPREL;}
+">"	{yylval = MAIOR_Q; return OPREL;}
+">=" {yylval = MAIOR_I; return OPREL;}
+"+"	{yylval = MAIS; return OPAD;}
+"-"	{yylval = MENOS; return OPAD;}
+"*"	{yylval = VEZES; return OPMUL;}
+"/"	{yylval = DIVIDIR; return OPMUL;}
 ":=" {yylval = ATRIB; return ATRIB;}
 ":" {yylval = DPONTOS; return DPONTOS;}
 ";" {yylval = PVIRG; return PVIRG;}
@@ -73,7 +76,7 @@ COMENTARIO_LINHA "//"[^"\n"]*"\n"
 {REAL} {yylval = installID(); return REAL;}
 {LOGICO} {yylval = installID(); return LOGICO;}
 {CARACTER} {yylval = installID(); return CARACTER;}
-{SE} {yylval = SE; return installID();}
+{SE} {yylval = installID(); return SE;}
 {SENAO} {yylval = installID(); return SENAO;}
 {ENQUANTO} {yylval = installID(); return ENQUANTO;}
 {LEIA} {yylval = installID(); return LEIA;}

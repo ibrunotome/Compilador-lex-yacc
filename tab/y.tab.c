@@ -488,12 +488,12 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    43,    43,    46,    47,    50,    53,    54,    57,    60,
-      63,    64,    67,    68,    69,    70,    73,    76,    79,    80,
-      83,    84,    85,    86,    87,    90,    93,    94,    97,   100,
-     103,   106,   109,   112,   113,   116,   116,   119,   122,   123,
-     126,   129,   130,   133,   136,   137,   140,   141,   142,   143,
-     144,   145
+       0,    43,    43,    45,    46,    48,    50,    51,    53,    55,
+      57,    58,    60,    61,    62,    63,    65,    67,    69,    70,
+      71,    72,    73,    74,    75,    77,    79,    80,    82,    84,
+      86,    88,    90,    92,    93,    95,    95,    97,    99,   100,
+     102,   104,   105,   107,   108,   109,   111,   112,   113,   114,
+     115,   116
 };
 #endif
 
@@ -1669,18 +1669,16 @@ yyreturn:
 }
 
 
-#line 147 "sintatico.y"
+#line 118 "sintatico.y"
 
 
-#include <stdio.h>
-#include <stdlib.h>
 #include "lex.yy.c"
 
-/* extern yyin;
- extern yytext; */
+// extern yyin;
+// extern yytext;
 
-int yyerror(char *s) {
-    fprintf(stderr, "%s, linha: %d, token: %d\n", s, countLinhas, yylval);
+int yyerror( char *s) {
+    fprintf(stderr, "%s\n", s);
     return 0;
 } 
 
